@@ -1,0 +1,24 @@
+service: agenda-service
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+
+plugins:
+  - serverless-offline
+
+functions:
+  buscarAgendas:
+    handler: dist/agenda/controller.handler
+    events:
+      - http:
+          path: agendas
+          method: get
+
+  marcarAgendamento:
+    handler: dist/agendamento/controller.handler
+    events:
+      - http:
+          path: agendamento
+          method: post
